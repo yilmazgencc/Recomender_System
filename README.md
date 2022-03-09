@@ -47,8 +47,8 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 Results:
 
 NN with 3 layers lr:1e-4
-- best validation loss: 0.7788
-- best validation rmse: 0.8825
+- best validation loss: 0.7714
+- best validation rmse: 0.8783
 
 <p align="center">
  <img src="imgs/NN_loss.png" width="400px"/> | <img src="imgs/NN_rmse.png" width="400px"/>
