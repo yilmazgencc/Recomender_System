@@ -56,8 +56,8 @@ NN with 3 layers lr:1e-4
 </p>
 
 CF with 3 layers
-- validation loss: 
-- validation rmse:
+- validation loss: 0.7403
+- validation rmse: 0.8604
 
 
 <p align="center">
