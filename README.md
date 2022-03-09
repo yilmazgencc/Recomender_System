@@ -43,11 +43,23 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 - --user_id: Specific user ID for prediction
 - --train_test_split: Train and test split ratio for training default=0.8
 
-### Result Figure
+### Results and Figures
+
+Results:
+
+NN with 3 layers lr:1e-4
+- validation loss: 0.7788
+- validation rmse: 0.8825
 
 <p align="center">
  <img src="imgs/NN_loss.png" width="400px"/> | <img src="imgs/NN_rmse.png" width="400px"/>
 </p>
+
+CF with 3 layers
+- validation loss: 
+- validation rmse:
+
+
 <p align="center">
  <img src="imgs/CF_loss.png" width="400px"/> | <img src="imgs/CF_rmse.png" width="400px"/>
 </p>
