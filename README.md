@@ -5,7 +5,7 @@
 - Python 3
 - CPU or NVIDIA GPU + CUDA CuDNN 
 
-### Getting started
+## Getting started
 
 - Clone this repo:
 ```bash
@@ -19,7 +19,12 @@ cd Recommender_System
 
 - For pip users, please type the command `pip install -r requirements.txt`.
 
-- Train the UC model:
+- Train the UC model with default parameters:
+
+```bash
+python train.py
+```
+- Train the UC model with custom parameters:
 ```bash
 python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIMENSION --epochs $EPOCH_NUMBER 
 --batch_size $BATCH_SIZE --lr $LEARNING_RATE --dropout $DROPOUT_RATE
@@ -39,12 +44,14 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 - --train_test_split: Train and test split ratio for training default=0.8
 
 ### Result Figure
+
 <p align="center">
  <img src="imgs/NN_loss.png" width="400px"/> | <img src="imgs/NN_rmse.png" width="400px"/>
 </p>
 <p align="center">
  <img src="imgs/CF_loss.png" width="400px"/> | <img src="imgs/CF_rmse.png" width="400px"/>
 </p>
+
 ## Issues
 
 - Please report all issues on the public forum.
