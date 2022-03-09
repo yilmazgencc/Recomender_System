@@ -39,9 +39,12 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 - --train_test_split: Train and test split ratio for training default=0.8
 
 ### Result Figure
-
-<img src="imgs/NN_loss.png" width="600px"/> | <img src="imgs/NN_loss.png" width="600px"/>
-
+<p align="center">
+ <img src="imgs/NN_loss.png" width="400px"/> | <img src="imgs/NN_rmse.png" width="400px"/>
+</p>
+<p align="center">
+ <img src="imgs/CF_loss.png" width="400px"/> | <img src="imgs/CF_rmse.png" width="400px"/>
+</p>
 ## Issues
 
 - Please report all issues on the public forum.
