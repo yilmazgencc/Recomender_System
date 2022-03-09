@@ -1,7 +1,6 @@
 # Recomender System for MovieLens 1M Dataset
 
 ## Prerequisites
-- Linux or macOS
 - Python 3
 - CPU or NVIDIA GPU + CUDA CuDNN 
 
@@ -48,16 +47,16 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 Results:
 
 NN with 3 layers lr:1e-4
-- validation loss: 0.7788
-- validation rmse: 0.8825
+- best validation loss: 0.7788
+- best validation rmse: 0.8825
 
 <p align="center">
  <img src="imgs/NN_loss.png" width="400px"/> | <img src="imgs/NN_rmse.png" width="400px"/>
 </p>
 
 CF with 3 layers
-- validation loss: 0.7403
-- validation rmse: 0.8604
+- best validation loss: 0.7403
+- best validation rmse: 0.8604
 
 
 <p align="center">
