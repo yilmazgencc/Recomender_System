@@ -9,8 +9,8 @@
 
 - Clone this repo:
 ```bash
-git clone https://github.com/yilmazgencc/Recomender_System.git
-cd Recomender_System
+git clone https://github.com/yilmazgencc/Recommender_System.git
+cd Recommender_System
 ```
 
 - Install PyTorch 3.7 and other dependencies via
@@ -34,6 +34,7 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 - --dropout: Droput rate for NN default=0.4
 - --seed: Random seed number  default=123
 - --use_deterministic: Seed activation option action="store_true"
+
 ### Result Figure
 
 <img src="imgs/NN_loss.png" width="600px"/> | <img src="imgs/NN_loss.png" width="600px"/>
