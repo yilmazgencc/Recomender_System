@@ -33,7 +33,10 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 - --lr:Learning rate for training  default=1e-4
 - --dropout: Droput rate for NN default=0.4
 - --seed: Random seed number  default=123
-- --use_deterministic: Seed activation option action="store_true"
+- --use_deterministic: Seed activation option default="store_true"
+- --specific_user: Specific user pretiction option activation  default="store_true"
+- --user_id: Specific user ID for prediction
+- --train_test_split: Train and test split ratio for training default=0.8
 
 ### Result Figure
 
