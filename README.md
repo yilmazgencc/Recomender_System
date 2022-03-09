@@ -54,7 +54,7 @@ NN with 3 layers lr:1e-4
  <img src="imgs/NN_loss.png" width="400px"/> | <img src="imgs/NN_rmse.png" width="400px"/>
 </p>
 
-CF with 3 layers
+CF with 3 layers lr:3e-4
 - best validation loss: 0.7403
 - best validation rmse: 0.8604
 
