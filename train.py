@@ -18,20 +18,22 @@ def train(args):
     #Plots loss and rsme graph accorging to ascending epochs
     plots(history)
     #Print 5 recommended movies for specific user    
-    recommended_movies(ratings_data,model)
+    recommended_movies(ratings_data,model, args)
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="MovieLens 1M Recommender system")
     parser.add_argument("--model", choices=["CF", "NN"],default="NN" )
     parser.add_argument("--batch_size", type=int, default=1024)
-    parser.add_argument("--epochs", type=int, default=1)
+    parser.add_argument("--epochs", type=int, default=25)
     parser.add_argument("--dropout", type=float, default=0.4)
-    parser.add_argument("--lr", type=float, default=1e-4)  # default value is randomly chosen
+    parser.add_argument("--lr", type=float, default=1e-4) 
     parser.add_argument("--opt", choices=["Adam", "SGD", "RMSprop", "Adagrad"], default="Adam")
     parser.add_argument("--embedding_dim", default=64, type=int)
     parser.add_argument("--seed", default=123, type=int)
     parser.add_argument("--use_deterministic", action="store_true")
-    
+    parser.add_argument("--specific_user", action="store_true")
+    parser.add_argument("--user_id", default=1, type=int)
+    parser.add_argument("--train_test_split", type=float, default=0.8)
     args = parser.parse_args()
     
     print("Starting...")

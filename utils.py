@@ -35,7 +35,7 @@ def dataprep(args):
     target_feature_name = "rating"
     if args.use_deterministic:
         np.random.seed(args.seed)
-    random_selection = np.random.rand(len(ratings_data.index)) <= 0.85
+    random_selection = np.random.rand(len(ratings_data.index)) <= args.train_test_split
     train_data = ratings_data[random_selection]
     eval_data = ratings_data[~random_selection]
 
@@ -147,28 +147,29 @@ def model_selection(user_vocabulary, movie_vocabulary, args):
 def plots(history):
     plt.plot(history.history["loss"])
     plt.plot(history.history["val_loss"])
-    plt.title("model loss")
+    plt.title("Model Loss")
     plt.ylabel("loss")
-    plt.xlabel("epoch")
+    plt.xlabel("Epoch")
     plt.legend(["train", "eval"], loc="upper left")
     plt.show()
     plt.plot(history.history["rmse"])
     plt.plot(history.history["val_rmse"])
-    plt.title("model loss")
-    plt.ylabel("rmse")
-    plt.xlabel("epoch")
+    plt.title("Model RMSE")
+    plt.ylabel("RMSE")
+    plt.xlabel("Epoch")
     plt.legend(["train", "eval"], loc="upper left")
     plt.show()
 
-def recommended_movies(ratings_data,model):
+def recommended_movies(ratings_data,model, args):
     movie_df = pd.read_csv("ml-1m/movies.dat", sep="::", names=['movieId', 'title', 'genres'], encoding='latin-1', engine="python")
     movie_df["movieId"] = movie_df["movieId"].apply(lambda x: f"movie_{x}")
     
     # Let us get a user and see the top recommendations.
     df = ratings_data
-    userid = df.user_id.sample(1).iloc[0]
-    #sonra burayı kaldır şimidlik test
-    userid = "user_1"
+    if args.specific_user:
+        userid="user_"+str(args.user_id)
+    else:
+        userid = df.user_id.sample(1).iloc[0]
     movies_watched_by_user = df[df.user_id == userid]
     movies_not_watched = movie_df[~movie_df["movieId"].isin(movies_watched_by_user.movie_id.values)]["movieId"]
     # movies_not_watched = movie_df["movieId"]
