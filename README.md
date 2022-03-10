@@ -1,4 +1,4 @@
-# Recomender System for MovieLens 1M Dataset
+# Recommender System for MovieLens 1M Dataset
 
 ## Prerequisites
 - Python 3
