@@ -18,12 +18,14 @@ cd Recommender_System
 
 - For pip users, please type the command `pip install -r requirements.txt`.
 
-- Train the UC model with default parameters:
+- Train the recommender model via [ready2use_Colab_nb.ipynb](https://colab.research.google.com/github/yilmazgencc/Recommender_System/blob/main/ready2use_Colab_nb.ipynb) notebook on Google Colab
+
+- Train the recommender model with default parameters:
 
 ```bash
 python train.py
 ```
-- Train the UC model with custom parameters:
+- Train the recommender model with custom parameters:
 ```bash
 python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIMENSION --epochs $EPOCH_NUMBER 
 --batch_size $BATCH_SIZE --lr $LEARNING_RATE --dropout $DROPOUT_RATE
