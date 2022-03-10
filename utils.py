@@ -97,8 +97,6 @@ def NN(user_vocabulary, movie_vocabulary, args):
     d = layers.Dropout(dropout)(d)
     d = layers.Dense(64, activation="relu")(d)
     d = layers.Dropout(dropout)(d)
-    d = layers.Dense(32, activation="relu")(d)
-    d = layers.Dropout(dropout)(d)
     d = tf.keras.layers.Dense(1, activation="sigmoid")(d)
     # Convert to rating scale.
     output = d * 4 + 1
@@ -154,6 +152,7 @@ def plots(history):
     plt.xlabel("Epoch")
     plt.legend(["train", "eval"], loc="upper left")
     plt.show()
+    plt.savefig("loss_fig.png")
     plt.plot(history.history["rmse"])
     plt.plot(history.history["val_rmse"])
     plt.title("Model RMSE")
@@ -161,6 +160,7 @@ def plots(history):
     plt.xlabel("Epoch")
     plt.legend(["train", "eval"], loc="upper left")
     plt.show()
+    plt.savefig("rmse_fig.png")
 
 def recommended_movies(ratings_data,model, args):
     movie_df = pd.read_csv("ml-1m/movies.dat", sep="::", names=['movieId', 'title', 'genres'], encoding='latin-1', engine="python")

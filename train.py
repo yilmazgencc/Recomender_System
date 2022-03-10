@@ -25,7 +25,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="MovieLens 1M Recommender system")
     parser.add_argument("--model", choices=["CF", "NN"],default="NN" )
     parser.add_argument("--batch_size", type=int, default=1024)
-    parser.add_argument("--epochs", type=int, default=50)
+    parser.add_argument("--epochs", type=int, default=25)
     parser.add_argument("--dropout", type=float, default=0.4)
     parser.add_argument("--lr", type=float, default=1e-4) 
     parser.add_argument("--opt", choices=["Adam", "SGD", "RMSprop", "Adagrad"], default="Adam")
