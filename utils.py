@@ -9,7 +9,7 @@ from tensorflow.keras import layers
 from tensorflow.keras.layers import StringLookup
 import matplotlib.pyplot as plt
 from keras.models import Model
-
+from keras.layers import Conv1D
 def dataprep(args):
     if not os.path.exists("ml-1m"):
         urlretrieve("http://files.grouplens.org/datasets/movielens/ml-1m.zip", "movielens.zip")
@@ -91,11 +91,13 @@ def NN(user_vocabulary, movie_vocabulary, args):
     movie_embedding = embedding_encoder(vocabulary=movie_vocabulary, embedding_dim=embedding_dim, name="movie")(movie_input)
     # Setup  linear layers with relu activaiton function
     d = layers.Concatenate(axis=1)([user_embedding, movie_embedding])
-    d = layers.Dense(256, activation="relu")(d)
+    
+    
+    d = layers.Dense(128, activation="relu")(d)
     d = layers.Dropout(dropout)(d)
     d = layers.Dense(64, activation="relu")(d)
     d = layers.Dropout(dropout)(d)
-    d = layers.Dense(16, activation="relu")(d)
+    d = layers.Dense(32, activation="relu")(d)
     d = layers.Dropout(dropout)(d)
     d = tf.keras.layers.Dense(1, activation="sigmoid")(d)
     # Convert to rating scale.
@@ -172,9 +174,7 @@ def recommended_movies(ratings_data,model, args):
         userid = df.user_id.sample(1).iloc[0]
     movies_watched_by_user = df[df.user_id == userid]
     movies_not_watched = movie_df[~movie_df["movieId"].isin(movies_watched_by_user.movie_id.values)]["movieId"]
-    # movies_not_watched = movie_df["movieId"]
     movies_not_watched = list(set(movies_not_watched).intersection(set(df["movie_id"])))
-    # movies_not_watched = list(set(movies_watched_by_user["movie_id"]).intersection(set(df["movie_id"])))
     movies_not_watched = [[x] for x in movies_not_watched]
    
     user_movie_array = np.hstack(([[userid]] * len(movies_not_watched), movies_not_watched))
@@ -184,27 +184,13 @@ def recommended_movies(ratings_data,model, args):
     top_ratings_indices = ratings_indices[ratings_indices[:, 1].argsort()[-5:][::-1]]
     recommended_movie_ids = [x[0] for x in top_ratings_indices]
     
-    # print("Showing recommendations for user: {}".format(userid))
-    # print("====" * 9)
-    # print("Movies with high ratings from user")
-    # print("----" * 8)
-    # top_movies_user = (
-    #     movies_watched_by_user.sort_values(by="rating", ascending=False)
-    #         .head(10)
-    #         .movie_id.values
-    # )
-    # movie_df_rows = movie_df[movie_df["movieId"].isin(top_movies_user)]
-    # for row in movie_df_rows.itertuples():
-    #     print(row.title, ":", row.genres)
     print("----" * 8)
     print("Top 5 movie recommendations for {}".format(userid))
     print("----" * 8)
     recommended_movies = movie_df[movie_df["movieId"].isin(recommended_movie_ids)]
     for row in recommended_movies.itertuples():
         print(row.title, ":", row.genres)
+    
+    return recommended_movies
         
-    #     #burası silinicek sonrasında denemelik
-    # array1=movies_watched_by_user.sort_values(by="movie_id", ascending=True).rating.values
-    # array2=ratings_indices[ratings_indices[:, 0].argsort()][:,1]
-    # print(array1) 
-    # print(array2) 
+    

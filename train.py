@@ -1,6 +1,5 @@
 from utils import dataprep, plots, optimizer_selection, recommended_movies, model_selection
 import tensorflow as tf
-import tensorflow_ranking as tfr
 import argparse
 
 def train(args):
@@ -12,19 +11,21 @@ def train(args):
     #Selected optimizer, loss, and metric are defined to model
     model.compile(optimizer=optimizer_selection(args),
         loss=tf.keras.losses.MeanSquaredError(),
-        metrics=[tfr.keras.metrics.NDCGMetric(name="nDCG"), tf.keras.metrics.RootMeanSquaredError(name="rmse")] )
+        metrics=[ tf.keras.metrics.RootMeanSquaredError(name="rmse")] )
     print("Training is starting")
     history = model.fit(train_dataset, epochs=args.epochs, validation_data=eval_dataset )
+    model.save('best_model_NN.hdf5')
     #Plots loss and rsme graph accorging to ascending epochs
     plots(history)
     #Print 5 recommended movies for specific user    
-    recommended_movies(ratings_data,model, args)
+    movie_recommendations=recommended_movies(ratings_data,model, args)
+    return model, movie_recommendations, history
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="MovieLens 1M Recommender system")
     parser.add_argument("--model", choices=["CF", "NN"],default="NN" )
     parser.add_argument("--batch_size", type=int, default=1024)
-    parser.add_argument("--epochs", type=int, default=25)
+    parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--dropout", type=float, default=0.4)
     parser.add_argument("--lr", type=float, default=1e-4) 
     parser.add_argument("--opt", choices=["Adam", "SGD", "RMSprop", "Adagrad"], default="Adam")
@@ -37,4 +38,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     print("Starting...")
-    train(args)
+    model, movie_recommendations, history=train(args)
