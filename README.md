@@ -12,7 +12,7 @@ git clone https://github.com/yilmazgencc/Recommender_System.git
 cd Recommender_System
 ```
 
-- Install PyTorch 3.7 and other dependencies via
+- Install Tensorflow and other dependencies via
 
 - For Conda users,  you can create a new Conda environment using `conda env create -f environment.yml`.
 
@@ -48,7 +48,7 @@ python train.py --model $MODEL  --opt $OPTIMIZER  --embedding_dim $EMBEDDING_DIM
 
 Results:
 
-NN with 3 layers lr:1e-4
+NN with 2 layers lr:1e-4
 - best validation loss: 0.7714
 - best validation rmse: 0.8783
 
@@ -56,7 +56,7 @@ NN with 3 layers lr:1e-4
  <img src="imgs/NN_loss.png" width="400px"/> | <img src="imgs/NN_rmse.png" width="400px"/>
 </p>
 
-CF with 3 layers lr:3e-4
+CF with lr:3e-4
 - best validation loss: 0.7403
 - best validation rmse: 0.8604
 
